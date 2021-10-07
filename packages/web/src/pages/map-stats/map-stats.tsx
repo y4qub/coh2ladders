@@ -16,8 +16,8 @@ import enGB from "antd/lib/locale/en_GB";
 import { isBefore, isAfter } from "date-fns";
 import MapStatsGeneralDataProvider from "./map-stats-general-data-provider";
 import CustomMapStatsRangeDataProvider from "./map-stats-range-data-provider";
-import PickerWithType from "../../components/picker-with-type";
 import { DatePickerType } from "../../utils/date-picker-type";
+import CustomDatePicker from '../../components/custom-date-picker';
 
 const { RangePicker } = DatePicker;
 
@@ -193,7 +193,7 @@ const MapStats: React.FC = () => {
             <Option value="range">Custom Range</Option>
           </Select>
           {datePickerType !== "range" ? (
-            <PickerWithType
+            <CustomDatePicker
               type={datePickerType}
               onChange={onDateSelect}
               dateValue={dateValue}

@@ -31,7 +31,7 @@ import {
   isTeamGame,
 } from "../../coh/helpers";
 import { Helper } from "../../components/helper";
-import PickerWithType from '../../components/picker-with-type';
+import CustomDatePicker from '../../components/custom-date-picker';
 const { Text } = Typography;
 
 const Leaderboards = () => {
@@ -309,7 +309,7 @@ const Leaderboards = () => {
               wrap
               style={{ display: "flex", justifyContent: "center" }}
             >
-              <PickerWithType
+              <CustomDatePicker
                 onChange={(value: any) => {
                   setSelectedTimeStamp(convertDateToDayTimestamp(`${value}`).toString());
                   changeLeaderBoardsRoute({
@@ -376,7 +376,7 @@ const Leaderboards = () => {
                   }
                 />
               </div>
-              <PickerWithType
+              <CustomDatePicker
                 onChange={(value: any) => {
                   setHistoricTimeStamp(convertDateToDayTimestamp(`${value}`).toString());
                   changeLeaderBoardsRoute({

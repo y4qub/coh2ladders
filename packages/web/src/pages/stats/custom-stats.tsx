@@ -18,7 +18,7 @@ import { Helper } from "../../components/helper";
 import CustomStatsRangeDataProvider from "./custom-stats-range-data-provider";
 import CustomStatsGeneralDataProvider from "./custom-stats-general-data-provider";
 import { DatePickerType } from "../../utils/date-picker-type";
-import PickerWithType from "../../components/picker-with-type";
+import CustomDatePicker from '../../components/custom-date-picker';
 
 const { Link } = Typography;
 const { RangePicker } = DatePicker;
@@ -225,7 +225,7 @@ const CustomStats: React.FC = () => {
             <Option value="range">Custom Range</Option>
           </Select>
           {datePickerType !== "range" ? (
-            <PickerWithType
+            <CustomDatePicker
               type={datePickerType}
               onChange={onDateSelect}
               dateValue={dateValue}
