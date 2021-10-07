@@ -230,6 +230,7 @@ const CustomStats: React.FC = () => {
               onChange={onDateSelect}
               dateValue={dateValue}
               disabledDate={disabledDate}
+              showPatches={true}
             />
           ) : (
             <CustomRangePicker from={rangeDate.fromDate} to={rangeDate.toDate} />

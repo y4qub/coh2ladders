@@ -319,6 +319,7 @@ const Leaderboards = () => {
                 }}
                 dateValue={new Date(parseInt(selectedTimeStamp) * 1000)}
                 disabledDate={disabledDate}
+                showPatches={true}
               />
               <Select
                 value={selectedType}
@@ -387,6 +388,7 @@ const Leaderboards = () => {
                 }}
                 dateValue={new Date(parseInt(selectedHistoricTimeStamp) * 1000)}
                 disabledDate={disabledDate}
+                showPatches={true}
               />
             </Space>
           </Col>

@@ -38,6 +38,18 @@ const patches = {
   },
 };
 
+const isPatchDate = (unixTimeStamp: number) => {
+  const isInPatches = [];
+
+  for (const patch of Object.values(patches)) {
+    if (unixTimeStamp == patch.startDateUnixTimeStamp) {
+      isInPatches.push(patch);
+    }
+  }
+
+  return isInPatches.length != 0;
+};
+
 const isTimeStampInPatches = (unixTimeStamp: number) => {
   const isInPatches = [];
 
@@ -57,4 +69,4 @@ const getCurrentPatch = () => {
   return patches[currentPatch];
 };
 
-export { isTimeStampInPatches, getCurrentPatch };
+export { isPatchDate, isTimeStampInPatches, getCurrentPatch };
