@@ -17,11 +17,11 @@ import { isBefore, isAfter } from "date-fns";
 import { Helper } from "../../components/helper";
 import CustomStatsRangeDataProvider from "./custom-stats-range-data-provider";
 import CustomStatsGeneralDataProvider from "./custom-stats-general-data-provider";
+import { DatePickerType } from "../../utils/date-picker-type";
+import PickerWithType from "../../components/picker-with-type";
 
 const { Link } = Typography;
 const { RangePicker } = DatePicker;
-
-type DatePickerType = "time" | "date" | "week" | "month" | "range" | undefined;
 
 const CustomStats: React.FC = () => {
   const { push } = useHistory();
@@ -64,29 +64,6 @@ const CustomStats: React.FC = () => {
     const canBeNew = isAfter(current, new Date());
 
     return canBeOld || canBeNew;
-  };
-
-  const PickerWithType = ({ type, onChange }: { type: DatePickerType; onChange: any }) => {
-    // @ts-ignore
-    let pickerType = type === "daily" ? "date" : type;
-
-    if (pickerType === "range") {
-      return <>ERROR</>;
-    }
-
-    return (
-      // locale enGB for Monday as start of the week
-      <ConfigProvider locale={enGB}>
-        <DatePicker
-          picker={pickerType}
-          onChange={onChange}
-          allowClear={false}
-          defaultValue={dateValue}
-          disabledDate={disabledDate}
-          size={"large"}
-        />
-      </ConfigProvider>
-    );
   };
 
   const onRangePickerChange = (value: any) => {
@@ -248,7 +225,12 @@ const CustomStats: React.FC = () => {
             <Option value="range">Custom Range</Option>
           </Select>
           {datePickerType !== "range" ? (
-            <PickerWithType type={datePickerType} onChange={onDateSelect} />
+            <PickerWithType
+              type={datePickerType}
+              onChange={onDateSelect}
+              dateValue={dateValue}
+              disabledDate={disabledDate}
+            />
           ) : (
             <CustomRangePicker from={rangeDate.fromDate} to={rangeDate.toDate} />
           )}

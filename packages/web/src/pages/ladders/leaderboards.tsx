@@ -31,6 +31,7 @@ import {
   isTeamGame,
 } from "../../coh/helpers";
 import { Helper } from "../../components/helper";
+import PickerWithType from '../../components/picker-with-type';
 const { Text } = Typography;
 
 const Leaderboards = () => {
@@ -298,26 +299,6 @@ const Leaderboards = () => {
     return canBeOld || canBeNew;
   };
 
-  const CustomDatePicker = ({
-    onChange,
-    defaultValue,
-  }: {
-    onChange: any;
-    defaultValue: Date;
-  }) => {
-    return (
-      <ConfigProvider locale={enGB}>
-        <DatePicker
-          onChange={onChange}
-          allowClear={false}
-          defaultValue={defaultValue}
-          disabledDate={disabledDate}
-          size={"large"}
-        />
-      </ConfigProvider>
-    );
-  };
-
   return (
     <>
       <div style={divStyle}>
@@ -328,7 +309,7 @@ const Leaderboards = () => {
               wrap
               style={{ display: "flex", justifyContent: "center" }}
             >
-              <CustomDatePicker
+              <PickerWithType
                 onChange={(value: any) => {
                   setSelectedTimeStamp(convertDateToDayTimestamp(`${value}`).toString());
                   changeLeaderBoardsRoute({
@@ -336,7 +317,8 @@ const Leaderboards = () => {
                   });
                   firebaseAnalytics.leaderboardsDateInteraction("regular");
                 }}
-                defaultValue={new Date(parseInt(selectedTimeStamp) * 1000)}
+                dateValue={new Date(parseInt(selectedTimeStamp) * 1000)}
+                disabledDate={disabledDate}
               />
               <Select
                 value={selectedType}
@@ -394,7 +376,7 @@ const Leaderboards = () => {
                   }
                 />
               </div>
-              <CustomDatePicker
+              <PickerWithType
                 onChange={(value: any) => {
                   setHistoricTimeStamp(convertDateToDayTimestamp(`${value}`).toString());
                   changeLeaderBoardsRoute({
@@ -403,7 +385,8 @@ const Leaderboards = () => {
                   setSelectedTimeStamp(selectedTimeStamp);
                   firebaseAnalytics.leaderboardsDateInteraction("historic");
                 }}
-                defaultValue={new Date(parseInt(selectedHistoricTimeStamp) * 1000)}
+                dateValue={new Date(parseInt(selectedHistoricTimeStamp) * 1000)}
+                disabledDate={disabledDate}
               />
             </Space>
           </Col>
